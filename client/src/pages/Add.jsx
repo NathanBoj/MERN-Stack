@@ -33,14 +33,16 @@ function Add() {
     console.log(movie)
 
     return (
-        <div className='form'>
-            <h1>Add new Movie</h1>
-            <input type='text' placeholder='title' onChange={handleChange} name="title" />
-            <input type='text' placeholder='desc' onChange={handleChange} name="description" />
-            <input type='number' placeholder='rating' onChange={handleChange} name="rating" />
-            <input type='text' placeholder='Cover' onChange={handleChange} name="cover" />
-            <button onClick={handleClick}>Submit</button>
-        </div>
+        <>
+            <div className='form'>
+                <h1>Add new Movie</h1>
+                <input type='text' placeholder='title' onChange={handleChange} name="title" />
+                <input type='text' placeholder='desc' onChange={handleChange} name="description" />
+                <input type='number' placeholder='rating' onChange={handleChange} name="rating" />
+                <input type='text' placeholder='Cover' onChange={handleChange} name="cover" />
+                <button onClick={handleClick}>Submit</button>
+            </div>
+        </>
     )
 }
 
