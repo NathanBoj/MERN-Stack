@@ -7,26 +7,24 @@ import { Link } from "react-router-dom";
 function Movies() {
   const [movies, setMovies] = useState([])
 
+  const fetchUserMovies = async () => {
+    try {
+      const userId = localStorage.getItem('userId');
+      console.log(userId);
+      const res = await axios.get(`http://localhost:8800/movies/${userId}`);
+      setMovies(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const fetchUserMovies = async () => {
-      try {
-        const userId = localStorage.getItem('userId');
-        console.log(userId);
-        const res = await axios.get(`http://localhost:8800/movies/${userId}`);
-        setMovies(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
     fetchUserMovies();
   }, []);
 
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8800/movies/`, { data: { id } });
-      const userId = localStorage.getItem('userId');
-      const res = await axios.get(`http://localhost:8800/movies/${userId}`);
-      setMovies(res.data);
+      fetchUserMovies();
     } catch (error) {
       console.log(error);
     }
